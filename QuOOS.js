@@ -81,6 +81,24 @@ function dataGroup(name, KVPS) {
     this.dataSystem.set(this.name, JSON.stringify(rows));
     if(this.debug===true){console.log(this.name+" -> add: Object successfully added!");}
   };
+  
+  //Test weather or not an object exists where a specific property equals the specified value
+  this.exists = function(whereThis, equalsThis) {
+    var rows = JSON.parse(this.dataSystem.get(this.name));
+    if (rows.length>0){
+      for (var i = 0; i < rows.length; i++) {
+        var row = rows[i];
+        if (row[whereThis]==equalsThis) {
+          if(this.debug===true){console.log(this.name+" -> exists: returned true");}
+          return true;
+        }
+      }
+      this.dataSystem.set(this.name, JSON.stringify(rows));
+    } else {
+      if(this.debug===true){console.log(this.name+" -> exists: No objects are stored!");}
+    }
+  }
+  
   //Change a specific property of an element where a property equals a certain value: where BY equals "user4" set TITLE to "hello there"
   this.edit = function(whereThis,equalsThis,setThis,ToThis) {
     var rows = JSON.parse(this.dataSystem.get(this.name));
