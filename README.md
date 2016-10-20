@@ -20,6 +20,7 @@ Here are a list of the QuOOS methods:
 Function                                    | Returns           | Description 
 ------------------------------------------- | ----------------- | --------------------------------------------------------------------
 add(OBJECT)                                 | undefined         | Stores an object in the datasection
+exists(whereThis,equalsThis)                | bool (true/false) | Tests if an object exists
 edit(whereThis,equalsThis,setThis,toThis)   | undefined         | Changes a property's value of any object who's given property equals the given value.
 remove(whereThis,equalsThis)                | undefined         | Removes any object who's given property equals the given value.
 get(whereThis,equalsThis)                   | object            | Returns the object who's given property equals the given value.
@@ -37,6 +38,14 @@ memory.add({
   propertyName: "value"
   otherProperty: "other value"
 });
+
+//Set test equal to true or false depending on whether or not an object where "propertyName" euqals "value" exists
+var test = memory.exists("propertyName", "value");
+
+//If the object exists then log that to the console
+if(test===true) {
+  console.log("Object exists");
+}
 
 //Change the object who's property "propertyName" equals "value" by setting its property "otherProperty" to "Other Value"
 memory.edit("propertyName", "value", "otherProperty", "Other Value");
